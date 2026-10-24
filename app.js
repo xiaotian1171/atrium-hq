@@ -12,7 +12,7 @@
 
 // Set this to the app's publishable pk_ key after registering the exact
 // GitHub Pages redirect URI in Pollinations. Publishable keys are safe to ship.
-const POLLINATIONS_APP_KEY = "";
+const POLLINATIONS_APP_KEY = "pk_bM65ZuBLjP0M9Mvx";
 const POLLINATIONS_AUTH_URL = "https://enter.pollinations.ai/authorize";
 const POLLINATIONS_TOKEN_URL = "https://enter.pollinations.ai/api/oauth/token";
 const POLLINATIONS_USERINFO_URL = "https://enter.pollinations.ai/api/oauth/userinfo";

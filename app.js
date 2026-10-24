@@ -813,10 +813,11 @@ async function callAgent(entity, prompt) {
         messages: [
           {
             role: "user",
-            content: `${prompt}\n\nReturn a review-ready result with:\n1. Result\n2. Evidence, assumptions and limits\n3. Recommended next actions\n4. Decision needed from the human\n\nDo not claim that you contacted anyone, published anything, browsed a private system, or completed an external action unless the assignment supplied evidence that it happened.`,
+            content: `${prompt}\n\nReturn a review-ready result with:\n1. Result\n2. Evidence, assumptions and limits\n3. Recommended next actions\n4. Decision needed from the human\n\nDo not claim that you contacted anyone, published anything, used information you were not given, or completed an external action unless the assignment supplied evidence that it happened.`,
           },
         ],
         temperature: 0.4,
+        reasoning_effort: "none",
         max_tokens: 1800,
       }),
     });

@@ -59,6 +59,7 @@ test("BYOP uses PKCE/session storage and never persists a visitor key with jobs"
   assert.match(js, /localStorage\.setItem\(STORAGE\.jobs/);
   assert.match(js, /AGENT_NOT_PROVISIONED/);
   assert.match(js, /will not fake the run with a generic model/);
+  assert.match(js, /reasoning_effort:\s*"none"/);
 });
 
 test("the interactive building, human gate and rent-a-floor flows are wired", () => {

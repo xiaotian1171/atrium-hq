@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atrium HQ — a tower of AI-run companies</title>
+  <meta name="description" content="Explore a 3D tower of one-person companies whose work is run by Pollinations Agents. Commission a floor with your own Pollen, review the work, and apply for the next office.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%237c5cff' d='M32 3 39 25 61 32 39 39 32 61 25 39 3 32 25 25Z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#directory">Skip to the company directory</a>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Atrium HQ home">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 3 39 25 61 32 39 39 32 61 25 39 3 32 25 25Z"/></svg>
+      <span>Atrium <strong>HQ</strong></span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#directory">Directory</a>
+      <a href="#tower">Tower</a>
+      <a href="#workbench">Workbench</a>
+      <a href="#rent">Rent a floor</a>
+    </nav>
+
+    <div class="connection-box">
+      <span id="connectionStatus" class="connection-status" role="status">Not connected</span>
+      <button id="connectButton" class="button button-primary" type="button">Connect Pollinations</button>
+      <button id="disconnectButton" class="button button-ghost hidden" type="button">Disconnect</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="heroTitle">
+      <div>
+        <p class="eyebrow">One founder per floor · Pollinations Agents do the daily work</p>
+        <h1 id="heroTitle">Take the lift through a tower of AI-run companies.</h1>
+        <p class="hero-copy">Turn the building, step into an office, commission work from that floor's public Pollinations Agent with your own Pollen, and approve the result like the human who owns the business.</p>
+      </div>
+      <dl class="hero-stats" aria-label="Building summary">
+        <div><dt id="statCompanies">10</dt><dd>companies</dd></div>
+        <div><dt>11</dt><dd>public Agents</dd></div>
+        <div><dt>BYOP</dt><dd>you pay only for your runs</dd></div>
+      </dl>
+    </section>
+
+    <section class="building-shell" aria-label="Atrium HQ building and directory">
+      <aside id="directory" class="panel directory-panel" aria-labelledby="directoryTitle">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-kicker">Directory</p>
+            <h2 id="directoryTitle">Who works here?</h2>
+          </div>
+          <span id="directoryCount" class="count-pill">10 floors</span>
+        </div>
+
+        <label class="field-label" for="directorySearch">Search companies or services</label>
+        <input id="directorySearch" class="text-input" type="search" placeholder="Try “research”, “games”, “contracts”…">
+
+        <label class="field-label" for="sectorFilter">Sector</label>
+        <select id="sectorFilter" class="text-input">
+          <option value="all">All sectors</option>
+        </select>
+
+        <div id="directoryList" class="directory-list" role="listbox" aria-label="Companies"></div>
+        <p id="directoryEmpty" class="empty-note hidden">No company matches that search yet. Try a broader term—or rent that floor yourself.</p>
+      </aside>
+
+      <section id="tower" class="panel tower-panel" aria-labelledby="towerTitle">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-kicker">The building</p>
+            <h2 id="towerTitle">Ride between floors</h2>
+          </div>
+          <div class="tower-actions">
+            <button id="resetViewButton" class="button button-small" type="button">Reset view</button>
+            <button id="dayNightButton" class="button button-small" type="button" aria-pressed="false">Night lights</button>
+          </div>
+        </div>
+
+        <div id="towerScene" class="tower-scene" aria-label="Interactive 3D tower. Drag to turn the building, then select a floor.">
+          <div class="sky-glow" aria-hidden="true"></div>
+          <div id="building" class="building" aria-label="Company floors"></div>
+          <div class="elevator" aria-hidden="true">
+            <div class="elevator-label">LIFT</div>
+            <div class="elevator-track"><div id="elevatorCar" class="elevator-car">12</div></div>
+            <div class="elevator-label">LOBBY</div>
+          </div>
+          <div class="ground" aria-hidden="true"></div>
+        </div>
+
+        <div class="tower-footer">
+          <p><strong>Drag</strong> to turn · <strong>Select a glowing floor</strong> to step inside</p>
+          <label class="floor-picker-label" for="floorPicker">Lift to</label>
+          <select id="floorPicker" class="text-input floor-picker"></select>
+        </div>
+      </section>
+
+      <aside class="panel office-panel" aria-labelledby="officeTitle">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-kicker">Office</p>
+            <h2 id="officeTitle">Step inside</h2>
+          </div>
+          <span id="officeFloorBadge" class="floor-badge">F12</span>
+        </div>
+        <div id="officeDetail"></div>
+      </aside>
+    </section>
+
+    <section id="workbench" class="panel workbench-panel" aria-labelledby="workbenchTitle">
+      <div class="panel-heading workbench-heading">
+        <div>
+          <p class="panel-kicker">Workbench</p>
+          <h2 id="workbenchTitle">Commission this floor</h2>
+          <p class="muted">The commissioned company is a real Pollinations Prompt Agent. Its base-model and tool usage are charged to the connected visitor—not to Atrium HQ.</p>
+        </div>
+        <div class="agent-callout">
+          <span>Selected Agent</span>
+          <code id="selectedAgentModel">community/xiaotian1171/atrium-northstar-climate</code>
+        </div>
+      </div>
+
+      <div class="workbench-grid">
+        <form id="jobForm" class="job-form">
+          <label class="field-label" for="jobType">Kind of work</label>
+          <select id="jobType" class="text-input">
+            <option value="research">Research brief</option>
+            <option value="outreach">Outreach draft</option>
+            <option value="build">Build / product spec</option>
+            <option value="report">Weekly report</option>
+            <option value="custom">Custom assignment</option>
+          </select>
+
+          <label class="field-label" for="jobPrompt">Assignment</label>
+          <textarea id="jobPrompt" class="text-input job-textarea" rows="8" maxlength="6000" required></textarea>
+
+          <div class="form-row">
+            <button id="runJobButton" class="button button-primary" type="submit">Run this floor's Agent</button>
+            <button id="loadExampleButton" class="button" type="button">Load a strong example</button>
+          </div>
+          <p id="jobStatus" class="status-note" role="status" aria-live="polite"></p>
+
+          <details id="manualKeyPanel" class="manual-key-panel">
+            <summary>Use your own Pollinations API key instead</summary>
+            <p>For reviewers and power users. The key is kept only in this tab's <code>sessionStorage</code>; it is never added to saved jobs.</p>
+            <label class="field-label" for="manualApiKey">Pollinations secret key</label>
+            <div class="inline-control">
+              <input id="manualApiKey" class="text-input" type="password" autocomplete="off" spellcheck="false" placeholder="sk_…">
+              <button id="saveManualKeyButton" class="button" type="button">Use for this tab</button>
+            </div>
+          </details>
+        </form>
+
+        <div>
+          <div class="job-board-heading">
+            <h3>Human decision queue</h3>
+            <button id="clearJobsButton" class="button button-small button-ghost" type="button">Clear finished local jobs</button>
+          </div>
+          <p class="muted">Agents bring drafts back here. Nothing is “sent” or published until a person approves it.</p>
+          <div id="jobBoard" class="job-board" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rent" class="panel rent-panel" aria-labelledby="rentTitle">
+      <div class="panel-heading">
+        <div>
+          <p class="panel-kicker">Next available office</p>
+          <h2 id="rentTitle">Apply to rent a floor</h2>
+          <p class="muted">Design your one-person company, preview it in the tower immediately, and export the exact Pollinations Prompt Agent blueprint needed to put its lead Agent online.</p>
+        </div>
+        <span id="nextFloorBadge" class="count-pill">Next: F13</span>
+      </div>
+
+      <div class="rent-grid">
+        <form id="rentForm" class="rent-form">
+          <div class="form-grid">
+            <div>
+              <label class="field-label" for="rentCompany">Company name</label>
+              <input id="rentCompany" class="text-input" required maxlength="60" placeholder="Signal Pantry">
+            </div>
+            <div>
+              <label class="field-label" for="rentFounder">Founder</label>
+              <input id="rentFounder" class="text-input" required maxlength="60" placeholder="Alex Rivera">
+            </div>
+            <div>
+              <label class="field-label" for="rentSector">Sector</label>
+              <input id="rentSector" class="text-input" required maxlength="42" placeholder="Food data">
+            </div>
+            <div>
+              <label class="field-label" for="rentColor">Office light</label>
+              <select id="rentColor" class="text-input">
+                <option value="#7c5cff">Pollen violet</option>
+                <option value="#08a6a6">Lagoon</option>
+                <option value="#f59e0b">Marigold</option>
+                <option value="#ec4899">Signal pink</option>
+                <option value="#22c55e">New leaf</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="field-label" for="rentMission">What does the company do?</label>
+          <textarea id="rentMission" class="text-input" rows="3" maxlength="280" required placeholder="Turns restaurant reviews into a weekly menu experiment backlog."></textarea>
+
+          <label class="field-label" for="rentServices">Services, separated by commas</label>
+          <input id="rentServices" class="text-input" required maxlength="240" placeholder="Review mining, experiment briefs, owner report">
+
+          <label class="field-label" for="rentTemplate">Lead Agent template</label>
+          <select id="rentTemplate" class="text-input">
+            <option value="operator">Operator — research, plan, draft, report</option>
+            <option value="research">Research studio — evidence and synthesis</option>
+            <option value="builder">Builder — specs, checklists and QA</option>
+            <option value="concierge">Concierge — intake, routing and follow-up</option>
+          </select>
+
+          <label class="check-row">
+            <input id="rentHumanGate" type="checkbox" checked>
+            <span>Every finished job needs my approval before anything leaves the office.</span>
+          </label>
+
+          <div class="form-row">
+            <button class="button button-primary" type="submit">Preview my floor</button>
+            <button id="removeDraftButton" class="button button-ghost hidden" type="button">Remove draft floor</button>
+          </div>
+          <p id="rentStatus" class="status-note" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="blueprint-card">
+          <div class="job-board-heading">
+            <h3>Prompt Agent blueprint</h3>
+            <div class="form-row compact-row">
+              <button id="copyBlueprintButton" class="button button-small" type="button">Copy JSON</button>
+              <button id="downloadBlueprintButton" class="button button-small" type="button">Download</button>
+            </div>
+          </div>
+          <p class="muted">This is a real <code>POST /account/agents</code> payload for a Pollinations Prompt Agent. Review it before creating anything under an account; Atrium HQ does not silently provision Agents.</p>
+          <pre id="agentBlueprint" class="blueprint" tabindex="0"></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="howTitle">
+      <h2 id="howTitle">How a floor works</h2>
+      <ol>
+        <li><strong>One human owns the company.</strong><span>They choose the mission and make the calls that matter.</span></li>
+        <li><strong>A public Pollinations Agent runs the desk.</strong><span>Research, outreach, building and reports arrive as reviewable drafts.</span></li>
+        <li><strong>Visitors bring their own Pollen.</strong><span>Connecting a wallet authorizes a scoped, revocable key for that visitor's runs.</span></li>
+        <li><strong>Approval stays visible.</strong><span>Every result stops in the decision queue before it can be marked ready.</span></li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Atrium HQ is an independent community app for Pollinations Quest <a href="https://github.com/pollinations/pollinations/issues/17999">#17999</a>.</p>
+    <a href="https://pollinations.ai/?ref=badge">
+      <img src="https://raw.githubusercontent.com/pollinations/pollinations/main/packages/ui/src/brand/badge-made-with.svg" alt="Made with pollinations.ai">
+    </a>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

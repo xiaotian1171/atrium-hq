@@ -1,0 +1,14 @@
+{
+  "name": "atrium-hq",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A tower of one-person companies run by Pollinations Agents.",
+  "scripts": {
+    "serve": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "test": "node --check app.js && node --test test.mjs",
+    "agents:check": "node scripts/create-agents.mjs",
+    "agents:create": "node scripts/create-agents.mjs --create"
+  },
+  "license": "MIT"
+}

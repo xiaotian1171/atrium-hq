@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-10-24T06:19:08.211Z",
+  "agents": [
+    {
+      "id": "070ca3a9-0699-4898-976d-ee3ac59c260b",
+      "modelId": "community/xiaotian1171/atrium-northstar-climate",
+      "name": "atrium-northstar-climate",
+      "title": "Northstar Climate Lead",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "32ffd63b-c02d-42ce-baa9-59308765e361",
+      "modelId": "community/xiaotian1171/atrium-loop-and-loom",
+      "name": "atrium-loop-and-loom",
+      "title": "Loop & Loom Lead Agent",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "d237823c-4567-4a2f-ab7d-1c2cc0deb057",
+      "modelId": "community/xiaotian1171/atrium-clearclause",
+      "name": "atrium-clearclause",
+      "title": "ClearClause Lead Agent",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "4f21badf-919c-494a-bf58-6723782e4a07",
+      "modelId": "community/xiaotian1171/atrium-papertrail-bio",
+      "name": "atrium-papertrail-bio",
+      "title": "PaperTrail Bio Lead",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "f1ccc8db-c465-4772-8f91-7fc7e8484556",
+      "modelId": "community/xiaotian1171/atrium-shelflife",
+      "name": "atrium-shelflife",
+      "title": "ShelfLife Lead Agent",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "b8e59cc7-55b0-449c-918b-4bbe34c53330",
+      "modelId": "community/xiaotian1171/atrium-civic-atlas",
+      "name": "atrium-civic-atlas",
+      "title": "Civic Atlas Lead Agent",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "bb185433-b0c8-4b9f-8574-5d08daeb00f7",
+      "modelId": "community/xiaotian1171/atrium-tinyfactory",
+      "name": "atrium-tinyfactory",
+      "title": "TinyFactory Lead Agent",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "6ebff261-cfff-4f60-8239-cb17f157040f",
+      "modelId": "community/xiaotian1171/atrium-soundpost",
+      "name": "atrium-soundpost",
+      "title": "SoundPost Lead Agent",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "db8e807d-b537-4785-a682-b06d77501226",
+      "modelId": "community/xiaotian1171/atrium-fieldnotes",
+      "name": "atrium-fieldnotes",
+      "title": "FieldNotes Lead Agent",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "7f05ade8-5704-49af-98c9-961155f93c1a",
+      "modelId": "community/xiaotian1171/atrium-mise-en-place",
+      "name": "atrium-mise-en-place",
+      "title": "Mise en Place Lead",
+      "type": "prompt_agent",
+      "visibility": "public"
+    },
+    {
+      "id": "1c95f06a-452e-4757-a539-111d7743175a",
+      "modelId": "community/xiaotian1171/atrium-concierge",
+      "name": "atrium-concierge",
+      "title": "Atrium Concierge",
+      "type": "prompt_agent",
+      "visibility": "public"
+    }
+  ]
+}
